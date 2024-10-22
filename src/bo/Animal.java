@@ -1,4 +1,5 @@
 package bo;
+import bo.Zoo;
 
 public class Animal {
     protected String name;
