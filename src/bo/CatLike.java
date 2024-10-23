@@ -1,4 +1,4 @@
-package bo:
+package bo;
 
 public class CatLike extends Animal{
     protected String race;
