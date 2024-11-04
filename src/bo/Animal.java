@@ -1,6 +1,7 @@
 package bo;
+import exceptions.AlreadyDeadException;
 
-public class Animal {
+public abstract class Animal {
     protected String name;
     protected int age;
     protected int ageMax;
@@ -29,19 +30,16 @@ public class Animal {
         return shout;
     }
 
-    public boolean getOlder() {
-        age++;
-        if (age > ageMax) {
-            System.out.println(name + " is dead");
-            return false;
-        } else {
-            System.out.println(name + " is " + age + " years old");
-            return true;
-        }
-    }
-
     public String eat() {
         return name + " eats and says " + shout;
+    }
+
+    public boolean getOlder() throws AlreadyDeadException {
+        if (age >= ageMax) {
+            throw new AlreadyDeadException(name + " has already reached the maximum age and is dead.");
+        }
+        age++;
+        return true;
     }
 
 }

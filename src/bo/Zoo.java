@@ -1,4 +1,5 @@
 package bo;
+import exceptions.*;
 
 public class Zoo {
     protected Manager dir;
@@ -11,7 +12,7 @@ public class Zoo {
         this.tabAnimals = new Animal[nbMax];
     }
 
-    public boolean add(Animal an) {
+    /*public boolean add(Animal an) {
 
         if (nbAnimals >= tabAnimals.length) {
             System.out.println("Zoo is full, cannot add more animals.");
@@ -81,6 +82,58 @@ public class Zoo {
             Animal animal = tabAnimals[i];
             System.out.println("Animal Name: " + animal.getName() + ", Age: " + animal.getAge() + 
                                ", Shout: " + animal.getShout());
+        }
+    }*/
+
+    public boolean add(Animal a) throws FullZooException, AlreadyDeadException {
+        if (nbAnimals >= tabAnimals.length) {
+            throw new FullZooException("The zoo is full, cannot add more animals.");
+        }
+        if (a.getAge() >= a.getAgeMax()) {
+            throw new AlreadyDeadException(a.getName() + " is already dead.");
+        }
+        tabAnimals[nbAnimals++] = a;
+        return true;
+    }
+
+    public boolean remove(Animal a) throws EmptyZooException {
+        if (nbAnimals == 0) {
+            throw new EmptyZooException("The zoo is empty, cannot remove any animals.");
+        }
+        for (int i = 0; i < nbAnimals; i++) {
+            if (tabAnimals[i].equals(a)) {
+                tabAnimals[i] = tabAnimals[--nbAnimals];
+                tabAnimals[nbAnimals] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void feedAnimal() throws EmptyZooException {
+        if (nbAnimals == 0) {
+            throw new EmptyZooException("The zoo is empty, there are no animals to feed.");
+        }
+        for (int i = 0; i < nbAnimals; i++) {
+            System.out.println(tabAnimals[i].eat());
+        }
+    }
+
+    public void birthZoo() throws EmptyZooException, AlreadyDeadException {
+        if (nbAnimals == 0) {
+            throw new EmptyZooException("The zoo is empty, no animals to age.");
+        }
+        for (int i = 0; i < nbAnimals; i++) {
+            tabAnimals[i].getOlder();
+        }
+    }
+
+    public void listZoo() throws EmptyZooException {
+        if (nbAnimals == 0) {
+            throw new EmptyZooException("The zoo is empty, no animals to display.");
+        }
+        for (int i = 0; i < nbAnimals; i++) {
+            System.out.println(tabAnimals[i].toString());
         }
     }
 
