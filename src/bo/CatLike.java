@@ -3,7 +3,7 @@ package bo;
 public class CatLike extends Animal{
     protected String race;
 
-    public CatLike(String race, String name, int age, int ageMax, String shout) {
+    public CatLike(String name, int age, int ageMax, String shout, String race) {
         super(name, age, ageMax, shout);
         this.race = race;
     }

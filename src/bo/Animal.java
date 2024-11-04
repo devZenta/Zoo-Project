@@ -1,5 +1,4 @@
 package bo;
-import bo.Zoo;
 
 public class Animal {
     protected String name;
@@ -28,6 +27,21 @@ public class Animal {
 
     public String getShout() {
         return shout;
+    }
+
+    public boolean getOlder() {
+        age++;
+        if (age > ageMax) {
+            System.out.println(name + " is dead");
+            return false;
+        } else {
+            System.out.println(name + " is " + age + " years old");
+            return true;
+        }
+    }
+
+    public String eat() {
+        return name + " eats and says " + shout;
     }
 
 }

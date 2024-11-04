@@ -1,9 +1,8 @@
 package bo;
-import bo.Zoo;
 
 public class Manager {
     protected String name;
-    protected int ysSeniority;
+    private int ysSeniority;
 
     public Manager(String name, int ysSeniority) {
         this.name = name;
