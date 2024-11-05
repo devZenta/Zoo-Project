@@ -21,6 +21,7 @@ public class Main {
             zoo.listZoo();
             zoo.feedAnimal();
             zoo.birthZoo();
+            zoo.listZoo();
             
         } catch (FullZooException | EmptyZooException | AlreadyDeadException e) {
             System.err.println(e.getMessage());
